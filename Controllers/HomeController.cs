@@ -49,5 +49,10 @@ namespace booklist.Controllers
         {
             return Repositorio.AddBook(book);
         }
+
+        public int RemoveBook(int book_id)
+        {
+            return Repositorio.RemoveBook(book_id);
+        }
     }
 }

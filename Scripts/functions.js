@@ -31,6 +31,7 @@ function addbook() {
         }
     });
 }
+
 function modalsuccessbook() {
     getbooks();
     $("#authorname").val("");
@@ -38,6 +39,7 @@ function modalsuccessbook() {
     $("#bookdesc").val("");
     $("#modalsuccess").modal("show");
 }
+
 function addauthor() {
     var obj = {
         AuthorName: $("#authornameadd").val(),
@@ -144,7 +146,7 @@ function getbooks() {
             {
                 "data": "Book_id",
                 "render": function (data) {
-                    return " <a href=\"#\" class=\"btn btn-danger\"  onclick=\"return modalaprovacao(" + data + "')\"><i class='fa fa-times-circle'></i></a> </td>";
+                    return " <a href=\"#\" class=\"btn btn-danger\"  onclick=\"return modaldelete(" + data + ")\"><i class='fa fa-times-circle'></i></a> </td>";
 
                 }
             }
@@ -154,9 +156,28 @@ function getbooks() {
     });
 };
 
+function removebook() {
+    var data = $("#btnremove").val();
+    console.log(data)
+    $.ajax({
+        url: '../Home/RemoveBook',
+        type: "POST",
+        dataType: "JSON",
+        data: {book_id : data},
+        success: function (data) {
+            modalsuccessbook();
+            $("#modaldelete").modal("hide")
+        }
+    });
+}
 
 function modalaprovacao(desc) {
-    console.log(desc)
     $("#descvalue").text(desc)
     $("#modalaprovacao").modal("show");
+};
+
+function modaldelete(desc) {
+    console.log(desc)
+    $("#btnremove").val(desc)
+    $("#modaldelete").modal("show");
 };
