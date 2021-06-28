@@ -1,4 +1,5 @@
-﻿using booklistRep;
+﻿using booklistModelo;
+using booklistRep;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,21 @@ namespace booklist.Controllers
         {
             var data = Repositorio.Booklist();
             return Json(data, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult Authorlist()
+        {
+            var data = Repositorio.AuthorList();
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        public int Addauthor(AutorModel autor)
+        {
+            return Repositorio.AddAuthor(autor);
+        }
+
+        public int AddBook(BooksModel book)
+        {
+            return Repositorio.AddBook(book);
         }
     }
 }
