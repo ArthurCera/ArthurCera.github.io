@@ -1,0 +1,143 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<section class="content-header">
+    <h1>
+        Booklist, this is a simple CRUD feature.
+
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#booklist">Book list</a></li>
+        <li><a data-toggle="tab" href="#aprovacaoliquidacao">Add</a></li>
+        <li><a data-toggle="tab" href="#aprovacaocontratos">Remove></li>
+    </ul>
+    <div class="tab-content">
+        <div id="booklist" class="tab-pane fade in active">
+            <h3>Books</h3>
+            <div class="table-responsive">
+                <table id="booklisttable" class="table table-condensed" style="width:100%;">
+                    <thead>
+                        <tr>
+                            <th>
+                                Book
+                            </th>
+                            <th>
+                                Author
+                            </th>
+                            <th>
+                                Description
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody"></tbody>
+                    <tfoot>
+                        <tr>
+                            <th>
+                                Book
+                            </th>
+                            <th>
+                                Author
+                            </th>
+                            <th>
+                                Description
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <!-- Tabela com os processos com liquidacao pendente-->
+        <div id="aprovacaoliquidacao" class="tab-pane fade">
+            <h3>Aprovação de Liquidadção</h3>
+            <div class="table-responsive">
+                <table id="tabaprovacaoliquidacao" class="table table-condensed" style="width:100%;">
+                    <thead>
+                        <tr>
+                            <th>
+                                Pasta
+                            </th>
+                            <th>
+                                Cliente
+                            </th>
+                            <th>
+                                Ação
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody"></tbody>
+                    <tfoot>
+                        <tr>
+                            <th>
+                                Pasta
+                            </th>
+                            <th>
+                                Cliente
+                            </th>
+                            <th>
+                                Ação
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <!-- Tabela com os contratos pendentes-->
+        <div id="aprovacaocontratos" class="tab-pane fade">
+            <h3>Aguardando Contratos</h3>
+            <div class="table-responsive">
+                <table id="tabcontratos" class="table table-condensed" style="width:100%;">
+                    <thead>
+                        <tr>
+                            <th>
+                                Cliente
+                            </th>
+                            <th>
+                                Pasta
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody"></tbody>
+                    <tfoot>
+                        <tr>
+                            <th>
+                                Cliente
+                            </th>
+                            <th>
+                                Pasta
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal de confirmação-->
+    <div class="modal fade" id="modalaprovacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" cellspacing="0" width="100%">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"><i class="fa fa-pencil"></i>Delete</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span style="text-align:center; font-size:25px;">Are you sure you want to delete this book from the database?</span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input style="display:none;" id="modalaprovacaoid" disabled />
+                        <button id="btnSalvarAprovacao" type="button" class="btn btn-success" onclick="bookdelete()"><i class="fa fa-save"></i> Confirm</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

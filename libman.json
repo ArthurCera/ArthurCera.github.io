@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "datatable@2.0.1",
+      "destination": "Scripts/datatable/"
+    },
+    {
+      "library": "jquery@3.6.0",
+      "destination": "Scripts/jquery/"
+    }
+  ]
+}
