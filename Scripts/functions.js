@@ -34,10 +34,6 @@ function addbook() {
 
 function modalsuccessbook() {
     getbooks();
-    $("#authorname").val("");
-    $("#booktitle").val("");
-    $("#bookdesc").val("");
-    $("#modalsuccess").modal("show");
 }
 
 function addauthor() {
@@ -139,14 +135,25 @@ function getbooks() {
             {
                 "data": "BookDesc",
                 "render": function (data) {
-                    return " <a href=\"#\" class=\"btn btn-primary\"  onclick=\"return modalaprovacao('" + data + "')\"><i class='fa fa-book'></i></a> </td>";
+                    return " <a href=\"#\" class=\"btn btn-primary\"  onclick=\"return modalaprovacao('" + data + "')\"><i class='fa fa-book'></i> Description</a></td>";
+
+                }
+            },
+            {
+                "data": { "flag": "BookRead", "id": "Book_id" },
+                "render": function (data) {
+                    if (data.BookRead) {
+                        return " <a href=\"#\" class=\"btn btn-success\"  onclick=\"return read(" + data.Book_id + ")\"><i class='fa fa-check-circle'></i></a> </td>";
+                    } else {
+                        return " <a href=\"#\" class=\"btn btn-warning\"  onclick=\"return read(" + data.Book_id + ")\"><i class='fa fa-check-circle'></i></a> </td>";
+                    }
 
                 }
             },
             {
                 "data": "Book_id",
                 "render": function (data) {
-                    return " <a href=\"#\" class=\"btn btn-danger\"  onclick=\"return modaldelete(" + data + ")\"><i class='fa fa-times-circle'></i></a> </td>";
+                    return " <a href=\"#\" class=\"btn btn-danger\" id='book_id' onclick=\"return modaldelete(" + data + ")\"><i class='fa fa-times-circle'></i> Delete </a></td>";
 
                 }
             }
@@ -180,4 +187,25 @@ function modaldelete(desc) {
     console.log(desc)
     $("#btnremove").val(desc)
     $("#modaldelete").modal("show");
+};
+
+function read(data) {
+    let obj = {
+        Book_id : data
+    }
+    $.ajax({
+        url: '../Home/ChangeRead',
+        type: 'POST',
+        dataType: "json",
+        contentType: "application/json;charset=utf-8",
+        data: JSON.stringify(obj),
+        success: function (data) {
+            console.log(data)
+            if (data == 1) {
+                modalsuccessbook();
+            } else if (-1) {
+                modalauthorexists();
+            } else modalfail();
+        }
+    });
 };

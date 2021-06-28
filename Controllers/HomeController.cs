@@ -54,5 +54,9 @@ namespace booklist.Controllers
         {
             return Repositorio.RemoveBook(book_id);
         }
+        public int ChangeRead(BooksModel books)
+        {
+            return Repositorio.ChangeRead(books.Book_id);
+        }
     }
 }
